@@ -15,10 +15,15 @@ class Coach {
   }
 
   selectRecommendedFood(category) {
-    const edibleFoodList = this.#getEdibleFoodList(MENU[category]);
-    const recommendFood = this.#getRecommendedFood(edibleFoodList);
+    while (true) {
+      const edibleFoodList = this.#getEdibleFoodList(MENU[category]);
+      const recommendFood = this.#getRecommendedFood(MENU[category]);
 
-    this.#recommendedFoodList.push(recommendFood);
+      if (edibleFoodList.includes(recommendFood)) {
+        this.#recommendedFoodList.push(recommendFood);
+        break;
+      }
+    }
   }
 
   #getEdibleFoodList(menuList) {
@@ -29,7 +34,7 @@ class Coach {
 
   #getRecommendedFood(foodList) {
     const numberList = foodList.map((_, index) => index);
-    const shuffledNumber = Random.shuffle(numberList)[0];
+    const shuffledNumber = Random.shuffle(numberList)[0] - 1;
 
     return foodList[shuffledNumber];
   }
