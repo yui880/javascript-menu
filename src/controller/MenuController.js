@@ -3,6 +3,7 @@ import { SEPARATOR } from '../constant/message.js';
 import Coach from '../model/Coach.js';
 import MenuRecommender from '../model/MenuRecommender.js';
 import OutputView from '../view/OutputView.js';
+import Validator from '../validator/Validator.js';
 
 class MenuController {
   #coachList;
@@ -41,6 +42,7 @@ class MenuController {
   async #getCoachNames() {
     const coachNames = await InputView.readCoachNames();
     const splitCoachNames = this.#splitToArray(coachNames);
+    Validator.validateCoachNames(splitCoachNames);
 
     return splitCoachNames;
   }

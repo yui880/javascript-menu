@@ -4,14 +4,20 @@ import { ERROR } from '../constant/message.js';
 import { ALL_MENU } from '../constant/menu.js';
 
 const Validator = {
-  checkIsValidLength(input) {
-    if (input.length < NAME.minLen || input.length > NAME.maxLen) {
-      throw new ValidationError(ERROR.invalidLength);
-    }
+  validateCoachNames(names) {
+    this.checkValidLength(names);
+    this.checkIsValidCount(names, { min: NAME.minCount, max: NAME.maxCount });
+  },
+  checkValidLength(inputs) {
+    inputs.forEach((input) => {
+      if (input.length < NAME.minLen || input.length > NAME.maxLen) {
+        throw new ValidationError(ERROR.invalidLength);
+      }
+    });
   },
 
-  checkIsValidCount(input, { min, max }) {
-    if (input.length < min || input.length > max) {
+  checkIsValidCount(inputs, { min, max }) {
+    if (inputs.length < min || inputs.length > max) {
       throw new ValidationError(ERROR.invalidCount(min, max));
     }
   },

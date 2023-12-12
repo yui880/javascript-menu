@@ -14,4 +14,6 @@ export const TITLE = Object.freeze({
 export const NAME = Object.freeze({
   minLen: 2,
   maxLen: 4,
+  minCount: 2,
+  maxCount: 5,
 });
