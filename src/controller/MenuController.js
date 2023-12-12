@@ -1,9 +1,13 @@
 import InputView from '../view/InputView.js';
 import { SEPARATOR } from '../constant/message.js';
 import Coach from '../model/Coach.js';
+import MenuRecommender from '../model/MenuRecommender.js';
+import OutputView from '../view/OutputView.js';
 
 class MenuController {
   #coachList;
+
+  #menuRecommender;
 
   constructor() {
     this.#coachList = [];
@@ -14,9 +18,16 @@ class MenuController {
     coachNameList.forEach((coachName) => this.makeCoach(coachName));
   }
 
-  async makeCoach(coachName) {
-    const inedibleList = this.#getInedibleList(coachName);
-    this.#coachList.push(new Coach(coachName, inedibleList));
+  #processMenuRecommendation() {
+    this.#menuRecommender = new MenuRecommender(this.#coachList);
+    this.#menuRecommender.recommendMenu();
+  }
+
+  async #makeCoach(coachNameList) {
+    for (const index in coachNameList) {
+      const inedibleList = await this.#getInedibleList(coachNameList[index]);
+      this.#coachList.push(new Coach(coachNameList[index], inedibleList));
+    }
   }
 
   async #getCoachNames() {
@@ -34,7 +45,7 @@ class MenuController {
   }
 
   #splitToArray(list) {
-    return list.split(SEPARATOR).map((item) => item.trim());
+    return list.split(SEPARATOR.list).map((item) => item.trim());
   }
 }
 
