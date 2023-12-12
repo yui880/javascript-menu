@@ -33,7 +33,7 @@ class Coach {
   }
 
   #getRecommendedFood(foodList) {
-    const numberList = foodList.map((_, index) => index);
+    const numberList = foodList.map((_, index) => index + 1);
     const shuffledNumber = Random.shuffle(numberList)[0] - 1;
 
     return foodList[shuffledNumber];
