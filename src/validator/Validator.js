@@ -8,6 +8,12 @@ const Validator = {
       throw new ValidationError(ERROR.invalidLength);
     }
   },
+
+  checkIsValidCount(input, { min, max }) {
+    if (input.length < min || input.length > max) {
+      throw new ValidationError(ERROR.invalidCount(min, max));
+    }
+  },
 };
 
 export default Validator;
