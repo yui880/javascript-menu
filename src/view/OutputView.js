@@ -8,7 +8,7 @@ const OutputView = {
   },
 
   printFinishMessage() {
-    Console.print(`${MESSAGE.finish}\n`);
+    Console.print(`\n${MESSAGE.finish}\n`);
   },
 
   printResult({ categoryList, recommendations }) {
