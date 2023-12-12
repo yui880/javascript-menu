@@ -33,6 +33,14 @@ class Coach {
 
     return foodList[shuffledNumber];
   }
+
+  getName() {
+    return this.#name;
+  }
+
+  getRecommendedFoodList() {
+    return [...this.#recommendedFoodList];
+  }
 }
 
 export default Coach;
