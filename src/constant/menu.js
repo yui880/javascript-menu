@@ -69,3 +69,5 @@ export const MENU = Object.freeze({
     '파니니',
   ],
 });
+
+export const ALL_MENU = Object.values(MENU).flat();
