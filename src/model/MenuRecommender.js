@@ -1,6 +1,8 @@
 import { Random } from '@woowacourse/mission-utils';
 import { CATEGORY, CATEGORY_RANGE } from '../constant/menu.js';
 
+import { WEEK } from '../constant/constant.js';
+
 class MenuRecommender {
   #coachList;
 
@@ -12,10 +14,12 @@ class MenuRecommender {
   }
 
   recommendMenu() {
-    const category = this.selectCategory();
+    this.selectCategory();
 
     this.#coachList.forEach((coach) => {
-      coach.selectRecommendedFood(category);
+      this.#categoryList.forEach((category) => {
+        coach.selectRecommendedFood(category);
+      });
     });
   }
 
@@ -26,9 +30,8 @@ class MenuRecommender {
 
       if (this.#countSameCategory(selectedCategory) <= CATEGORY_RANGE.duplicateLimit) {
         this.#categoryList.push(selectedCategory);
-
-        return selectedCategory;
       }
+      if (this.#categoryList.length === Object.keys(WEEK).length) break;
     }
   }
 
@@ -40,11 +43,13 @@ class MenuRecommender {
     return this.#categoryList.filter((category) => category === newCategory).length;
   }
 
+  getCategoryList() {
+    return [...this.#categoryList];
+  }
+
   getTotalRecommendedList() {
     return Array.from(this.#coachList, (coach) => {
-      const coachName = coach.getName();
-
-      return { name: coachName, recommendation: coach.getRecommendedFoodList() };
+      return { name: coach.getName(), recommendation: coach.getRecommendedFoodList() };
     });
   }
 }
