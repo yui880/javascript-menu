@@ -17,3 +17,8 @@ export const NAME = Object.freeze({
   minCount: 2,
   maxCount: 5,
 });
+
+export const INEDIBLE = Object.freeze({
+  minCount: 0,
+  maxCount: 2,
+});

@@ -50,6 +50,7 @@ class MenuController {
   async #getInedibleList(coachName) {
     const inedibleList = await InputView.readInedibleList(coachName);
     const splitInedibleList = this.#splitToArray(inedibleList);
+    Validator.validateInedibleList(splitInedibleList);
 
     return splitInedibleList;
   }
