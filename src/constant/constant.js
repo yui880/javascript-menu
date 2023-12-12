@@ -10,3 +10,8 @@ export const TITLE = Object.freeze({
   week: '구분',
   category: '카테고리',
 });
+
+export const NAME = Object.freeze({
+  minLen: 2,
+  maxLen: 4,
+});
