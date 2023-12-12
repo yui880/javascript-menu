@@ -33,11 +33,9 @@ class MenuController {
   }
 
   async #makeCoach(coachNameList) {
-    for (const index in coachNameList) {
-      const inedibleList = await this.#handleException(() =>
-        this.#getInedibleList(coachNameList[index]),
-      );
-      this.#coachList.push(new Coach(coachNameList[index], inedibleList));
+    for (const coachName of coachNameList) {
+      const inedibleList = await this.#handleException(() => this.#getInedibleList(coachName));
+      this.#coachList.push(new Coach(coachName, inedibleList));
     }
   }
 
