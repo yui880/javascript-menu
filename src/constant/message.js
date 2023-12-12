@@ -10,3 +10,7 @@ export const SEPARATOR = {
   list: ',',
   print: ' | ',
 };
+
+export const ERROR = {
+  errorPrefix: '[ERROR]',
+};
