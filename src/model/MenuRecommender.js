@@ -11,6 +11,14 @@ class MenuRecommender {
     this.#categoryList = [];
   }
 
+  recommendMenu() {
+    const category = this.selectCategory();
+
+    this.#coachList.forEach((coach) => {
+      coach.selectRecommendedFood(category);
+    });
+  }
+
   selectCategory() {
     while (true) {
       const selectedCategory = this.#generateCategoryRandomNumber();
