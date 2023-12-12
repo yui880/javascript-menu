@@ -36,10 +36,10 @@ describe('Coach 클래스 테스트', () => {
 
         // when
         const coach = new Coach('yuna', ['']);
-        coach.selectRecommendedFood(category);
+        coach.selectRecommendedMenu(category);
 
         // then
-        const result = coach.getRecommendedFoodList()[0];
+        const result = coach.getRecommendedMenuList()[0];
         expect(result).toBe(expected);
       },
     );
@@ -54,9 +54,9 @@ describe('Coach 클래스 테스트', () => {
       ]);
 
       // when
-      coachInstance.selectRecommendedFood(category);
-      coachInstance.selectRecommendedFood(category);
-      const result = coachInstance.getRecommendedFoodList();
+      coachInstance.selectRecommendedMenu(category);
+      coachInstance.selectRecommendedMenu(category);
+      const result = coachInstance.getRecommendedMenuList();
 
       // then
       const expected = ['라자냐', '그라탱'];
@@ -91,8 +91,8 @@ describe('Coach 클래스 테스트', () => {
 
         // when
         const coach = new Coach('yuna', inedible);
-        coach.selectRecommendedFood(category);
-        const result = coach.getRecommendedFoodList();
+        coach.selectRecommendedMenu(category);
+        const result = coach.getRecommendedMenuList();
 
         // then
         expect(result).toStrictEqual(expected);

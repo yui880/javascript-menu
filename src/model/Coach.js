@@ -1,5 +1,5 @@
-import { Random } from '@woowacourse/mission-utils';
 import { MENU } from '../constant/menu.js';
+import RandomDataGenerator from '../utils/RandomDataGenerator.js';
 
 class Coach {
   #name;
@@ -17,7 +17,7 @@ class Coach {
   selectRecommendedMenu(category) {
     while (true) {
       const edibleFoodList = this.#getEdibleMenuList(MENU[category]);
-      const recommendFood = this.#getRandomMenu(MENU[category]);
+      const recommendFood = RandomDataGenerator.generateMenu(MENU[category]);
 
       if (edibleFoodList.includes(recommendFood)) {
         this.#recommendedMenuList.push(recommendFood);
@@ -30,13 +30,6 @@ class Coach {
     return menuList.filter(
       (menu) => !this.#inedibleMenuList.includes(menu) && !this.#recommendedMenuList.includes(menu),
     );
-  }
-
-  #getRandomMenu(menuList) {
-    const numberList = menuList.map((_, index) => index + 1);
-    const shuffledNumber = Random.shuffle(numberList)[0] - 1;
-
-    return menuList[shuffledNumber];
   }
 
   getName() {

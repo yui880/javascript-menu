@@ -1,7 +1,7 @@
-import { Random } from '@woowacourse/mission-utils';
-import { CATEGORY, CATEGORY_RANGE } from '../constant/menu.js';
+import { CATEGORY_RANGE } from '../constant/menu.js';
 
 import { WEEK } from '../constant/constant.js';
+import RandomDataGenerator from '../utils/RandomDataGenerator.js';
 
 class MenuRecommender {
   #coachList;
@@ -25,18 +25,13 @@ class MenuRecommender {
 
   #selectCategory() {
     while (true) {
-      const categoryIndex = this.#generateCategoryRandomNumber() - 1;
-      const selectedCategory = Object.values(CATEGORY)[categoryIndex];
+      const selectedCategory = RandomDataGenerator.generateCategory();
 
       if (this.#countSameCategory(selectedCategory) < CATEGORY_RANGE.duplicateLimit) {
         this.#categoryList.push(selectedCategory);
       }
       if (this.#categoryList.length === Object.keys(WEEK).length) break;
     }
-  }
-
-  #generateCategoryRandomNumber() {
-    return Random.pickNumberInRange(CATEGORY_RANGE.min, CATEGORY_RANGE.max);
   }
 
   #countSameCategory(newCategory) {
