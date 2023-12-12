@@ -14,7 +14,7 @@ class MenuRecommender {
   }
 
   recommendMenu() {
-    this.selectCategory();
+    this.#selectCategory();
 
     this.#coachList.forEach((coach) => {
       this.#categoryList.forEach((category) => {
@@ -23,7 +23,7 @@ class MenuRecommender {
     });
   }
 
-  selectCategory() {
+  #selectCategory() {
     while (true) {
       const categoryIndex = this.#generateCategoryRandomNumber() - 1;
       const selectedCategory = Object.values(CATEGORY)[categoryIndex];
