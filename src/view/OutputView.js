@@ -12,7 +12,7 @@ const OutputView = {
   },
 
   printResult({ categoryList, recommendations }) {
-    Console.print(MESSAGE.result);
+    Console.print(`\n${MESSAGE.result}`);
     this.printWeek();
     this.printCategory(categoryList);
     this.printRecommendation(recommendations);
