@@ -28,7 +28,7 @@ class MenuRecommender {
       const categoryIndex = this.#generateCategoryRandomNumber() - 1;
       const selectedCategory = Object.values(CATEGORY)[categoryIndex];
 
-      if (this.#countSameCategory(selectedCategory) <= CATEGORY_RANGE.duplicateLimit) {
+      if (this.#countSameCategory(selectedCategory) < CATEGORY_RANGE.duplicateLimit) {
         this.#categoryList.push(selectedCategory);
       }
       if (this.#categoryList.length === Object.keys(WEEK).length) break;
