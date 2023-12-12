@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import { MENU } from '../constant/menu';
+import { MENU } from '../constant/menu.js';
 
 class Coach {
   #name;
@@ -28,7 +28,10 @@ class Coach {
   }
 
   #getRecommendedFood(foodList) {
-    return Random.shuffle(foodList)[0];
+    const numberList = foodList.map((_, index) => index);
+    const shuffledNumber = Random.shuffle(numberList)[0];
+
+    return foodList[shuffledNumber];
   }
 }
 
