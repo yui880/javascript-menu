@@ -11,12 +11,23 @@ class MenuRecommender {
     this.#categoryList = [];
   }
 
-  recommendMenu() {
-    const selectedCategory = this.#selectCategory();
+  selectCategory() {
+    while (true) {
+      const selectedCategory = this.#generateCategoryRandomNumber();
+      if (this.#countSameCategory(selectedCategory) <= CATEGORY_RANGE.duplicateLimit) {
+        this.#categoryList.push(selectedCategory);
+
+        return selectedCategory;
+      }
+    }
   }
 
-  #selectCategory() {
+  #generateCategoryRandomNumber() {
     return Random.pickNumberInRange(CATEGORY_RANGE.min, CATEGORY_RANGE.max);
+  }
+
+  #countSameCategory(newCategory) {
+    return this.#categoryList.filter((category) => category === newCategory).length;
   }
 }
 

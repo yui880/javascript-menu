@@ -9,6 +9,7 @@ export const CATEGORY = Object.freeze({
 export const CATEGORY_RANGE = Object.freeze({
   min: 1,
   max: 5,
+  duplicateLimit: 2,
 });
 
 export const MENU = Object.freeze({
