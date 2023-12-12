@@ -6,6 +6,11 @@ export const CATEGORY = Object.freeze({
   western: '양식',
 });
 
+export const CATEGORY_RANGE = Object.freeze({
+  min: 1,
+  max: 5,
+});
+
 export const MENU = Object.freeze({
   [CATEGORY.japanese]: [
     '규동',
