@@ -34,6 +34,10 @@ const OutputView = {
       Console.print(`[ ${list.join(SEPARATOR.print)} ]`);
     });
   },
+
+  printError(message) {
+    Console.print(message);
+  },
 };
 
 export default OutputView;

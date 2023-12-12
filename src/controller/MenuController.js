@@ -16,7 +16,7 @@ class MenuController {
 
   async play() {
     OutputView.printStartMessage();
-    const coachNameList = await this.#getCoachNames();
+    const coachNameList = await this.#handleException(() => this.#getCoachNames());
     await this.#makeCoach(coachNameList);
 
     this.#processMenuRecommendation();
@@ -34,8 +34,20 @@ class MenuController {
 
   async #makeCoach(coachNameList) {
     for (const index in coachNameList) {
-      const inedibleList = await this.#getInedibleList(coachNameList[index]);
+      const inedibleList = await this.#handleException(() =>
+        this.#getInedibleList(coachNameList[index]),
+      );
       this.#coachList.push(new Coach(coachNameList[index], inedibleList));
+    }
+  }
+
+  async #handleException(callback) {
+    while (true) {
+      try {
+        return await callback();
+      } catch (error) {
+        OutputView.printError(error.message);
+      }
     }
   }
 
