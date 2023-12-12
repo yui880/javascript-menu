@@ -6,8 +6,8 @@ const InputView = {
     return await Console.readLineAsync(`${MESSAGE.enterCoachName}\n`);
   },
 
-  async readInedibleList() {
-    return await Console.readLineAsync(`\n${MESSAGE.enterInedibleList}\n`);
+  async readInedibleList(coachName) {
+    return await Console.readLineAsync(`\n${MESSAGE.enterInedibleList(coachName)}\n`);
   },
 };
 
