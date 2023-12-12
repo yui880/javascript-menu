@@ -1,5 +1,5 @@
 import { Random } from '@woowacourse/mission-utils';
-import { CATEGORY_RANGE } from '../constant/menu';
+import { CATEGORY, CATEGORY_RANGE } from '../constant/menu.js';
 
 class MenuRecommender {
   #coachList;
@@ -21,7 +21,9 @@ class MenuRecommender {
 
   selectCategory() {
     while (true) {
-      const selectedCategory = this.#generateCategoryRandomNumber();
+      const categoryIndex = this.#generateCategoryRandomNumber() - 1;
+      const selectedCategory = Object.values(CATEGORY)[categoryIndex];
+
       if (this.#countSameCategory(selectedCategory) <= CATEGORY_RANGE.duplicateLimit) {
         this.#categoryList.push(selectedCategory);
 
@@ -36,6 +38,14 @@ class MenuRecommender {
 
   #countSameCategory(newCategory) {
     return this.#categoryList.filter((category) => category === newCategory).length;
+  }
+
+  getTotalRecommendedList() {
+    return Array.from(this.#coachList, (coach) => {
+      const coachName = coach.getName();
+
+      return { name: coachName, recommendation: coach.getRecommendedFoodList() };
+    });
   }
 }
 
