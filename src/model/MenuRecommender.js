@@ -18,7 +18,7 @@ class MenuRecommender {
 
     this.#coachList.forEach((coach) => {
       this.#categoryList.forEach((category) => {
-        coach.selectRecommendedFood(category);
+        coach.selectRecommendedMenu(category);
       });
     });
   }
@@ -49,7 +49,7 @@ class MenuRecommender {
 
   getTotalRecommendedList() {
     return Array.from(this.#coachList, (coach) => {
-      return { name: coach.getName(), recommendation: coach.getRecommendedFoodList() };
+      return { name: coach.getName(), recommendation: coach.getRecommendedMenuList() };
     });
   }
 }

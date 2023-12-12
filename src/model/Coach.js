@@ -4,47 +4,47 @@ import { MENU } from '../constant/menu.js';
 class Coach {
   #name;
 
-  #inedibleFoodList;
+  #inedibleMenuList;
 
-  #recommendedFoodList;
+  #recommendedMenuList;
 
-  constructor(name, foodList) {
+  constructor(name, menuList) {
     this.#name = name;
-    this.#inedibleFoodList = foodList;
-    this.#recommendedFoodList = [];
+    this.#inedibleMenuList = menuList;
+    this.#recommendedMenuList = [];
   }
 
-  selectRecommendedFood(category) {
+  selectRecommendedMenu(category) {
     while (true) {
-      const edibleFoodList = this.#getEdibleFoodList(MENU[category]);
-      const recommendFood = this.#getRecommendedFood(MENU[category]);
+      const edibleFoodList = this.#getEdibleMenuList(MENU[category]);
+      const recommendFood = this.#getRandomMenu(MENU[category]);
 
       if (edibleFoodList.includes(recommendFood)) {
-        this.#recommendedFoodList.push(recommendFood);
+        this.#recommendedMenuList.push(recommendFood);
         break;
       }
     }
   }
 
-  #getEdibleFoodList(menuList) {
+  #getEdibleMenuList(menuList) {
     return menuList.filter(
-      (menu) => !this.#inedibleFoodList.includes(menu) && !this.#recommendedFoodList.includes(menu),
+      (menu) => !this.#inedibleMenuList.includes(menu) && !this.#recommendedMenuList.includes(menu),
     );
   }
 
-  #getRecommendedFood(foodList) {
-    const numberList = foodList.map((_, index) => index + 1);
+  #getRandomMenu(menuList) {
+    const numberList = menuList.map((_, index) => index + 1);
     const shuffledNumber = Random.shuffle(numberList)[0] - 1;
 
-    return foodList[shuffledNumber];
+    return menuList[shuffledNumber];
   }
 
   getName() {
     return this.#name;
   }
 
-  getRecommendedFoodList() {
-    return [...this.#recommendedFoodList];
+  getRecommendedMenuList() {
+    return [...this.#recommendedMenuList];
   }
 }
 
