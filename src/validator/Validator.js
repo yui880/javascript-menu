@@ -30,7 +30,7 @@ const Validator = {
 
   checkExistence(inputs) {
     inputs.forEach((input) => {
-      if (!ALL_MENU.includes(input)) {
+      if (!['', ...ALL_MENU].includes(input)) {
         throw new ValidationError(ERROR.noExist);
       }
     });
