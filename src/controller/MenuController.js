@@ -14,8 +14,16 @@ class MenuController {
   }
 
   async play() {
-    const coachNameList = this.#getCoachNames();
-    coachNameList.forEach((coachName) => this.makeCoach(coachName));
+    OutputView.printStartMessage();
+    const coachNameList = await this.#getCoachNames();
+    await this.#makeCoach(coachNameList);
+
+    this.#processMenuRecommendation();
+    OutputView.printResult({
+      categoryList: this.#menuRecommender.getCategoryList(),
+      recommendations: this.#menuRecommender.getTotalRecommendedList(),
+    });
+    OutputView.printFinishMessage();
   }
 
   #processMenuRecommendation() {
