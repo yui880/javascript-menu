@@ -2,7 +2,7 @@ import { Console } from '@woowacourse/mission-utils';
 import { MESSAGE } from '../constant/message.js';
 
 const InputView = {
-  async readCoachName() {
+  async readCoachNames() {
     return await Console.readLineAsync(`${MESSAGE.enterCoachName}\n`);
   },
 
